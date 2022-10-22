@@ -10,9 +10,9 @@ app.set("view engine", "ejs");
 
 //route for index page
 app.get("/", function (req, res) {
-  const id = req.query.id
+  const userId = req.query.id
   res.render("home", {
-    id
+    userId
   });
 });
 app.get("/bet", function (req, res) {
