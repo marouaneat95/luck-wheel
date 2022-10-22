@@ -10,16 +10,22 @@ app.set("view engine", "ejs");
 
 //route for index page
 app.get("/", function (req, res) {
-
-  res.render("home");
+  const id = req.query.id
+  res.render("home", {
+    id
+  });
 });
 app.get("/bet", function (req, res) {
-  res.render("bet");
+  const userId = req.query.id
+  res.render("bet", {
+    userId
+  });
 });
 //route for magic page
 app.get("/magic", function (req, res) {
   // const bet = req.params.balance
   const bet = req.query.bet
+  const userId = req.query.id
   // console.log("bet", bet)
   axios.get('https://www.khadmty1.com/api/WalletApi/GetGameCalc')
   .then((data)=>{
@@ -32,7 +38,7 @@ app.get("/magic", function (req, res) {
     if(x <= target){
       console.log("Won!")
       axios.post('https://www.khadmty1.com/api/WalletApi/GameResult',{
-        "ApplicationUserId":"36b26247-a8f3-4513-8c62-513857011da7",
+        "ApplicationUserId":`${userId}`,
         "Result": true,
         "Balance": bet
       })
