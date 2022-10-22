@@ -1,0 +1,42 @@
+<%- include('./partials/header'); %>
+<h1 style="color: #E3B448; font-family: 'Pacifico', cursive; padding-top: 30px;">
+  welcome
+</h1>
+<div id="casino" style="padding-top:50px;">
+    <div class="content">
+      <div>
+        <div id="casino1" class="slotMachine" style="margin-left: -65px; overflow: hidden;">
+          <% if(won) { %>
+            <div id="casino1slotMachineContainer" class="slotMachineContainer" style="transition: all 1s ease-out 0s; transform: matrix(1, 0, 0, 1, 0, -100);">
+            </div>
+          <% } else { %>  
+            <div id="casino1slotMachineContainer" class="slotMachineContainer" style="transition: all 1s ease-out 0s; transform: matrix(1, 0, 0, 1, 0, -100);">
+            </div>
+          <% } %>  
+        </div>
+        <div id="casino2" class="slotMachine" style="overflow: hidden;">
+          <% if(won) { %>
+            <div id="casino2slotMachineContainer" class="slotMachineContainer" style="transition: all 1s ease-out 0s; transform: matrix(1, 0, 0, 1, 0, -100);">
+            </div>
+            <% } else { %>  
+              <div id="casino2slotMachineContainer" class="slotMachineContainer" style="transition: all 1s ease-out 0s; transform: matrix(1, 0, 0, 1, 0, -400);"></div>
+          <% } %>
+        </div>
+        <div id="casino3" class="slotMachine" style="overflow: hidden;"> 
+          <% if(won) { %>
+            <div id="casino3slotMachineContainer" class="slotMachineContainer" style="transition: all 1s ease-out 0s; transform: matrix(1, 0, 0, 1, 0, -100);">
+            </div>
+          <% } else { %>  
+            <div id="casino3slotMachineContainer" class="slotMachineContainer" style="transition: all 1s ease-out 0s; transform: matrix(1, 0, 0, 1, 0, -700);">
+            </div>
+          <% } %> 
+        </div>
+        <div class="btn-group btn-group-justified" role="group" style="visibility:hidden">
+          <div id="casinoShuffle" type="button" class="btn btn-primary btn-lg">Enjoy</div>
+          <div id="casinoStop" type="button" class="btn btn-primary btn-lg">Our Game</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <%- include('./partials/footer'); %>
+

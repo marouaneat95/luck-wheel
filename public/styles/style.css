@@ -1,0 +1,257 @@
+ @charset "utf-8";
+/* CSS Document */
+
+@import url(https://fonts.googleapis.com/css?family=Roboto);
+/* @import url(http://fonts.googleapis.com/css?family=Pathway+Gothic+One); */
+
+* {
+  font-family: 'Roboto', sans-serif;
+}
+.my-container{
+  min-height:  400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+         
+body {
+  background-image: linear-gradient(to right, #093028 0%, #237A57  51%, #093028  100%);
+  background-position: right center; /* change the direction of the change here */
+}
+
+
+code {
+  border: 1px solid #eee;
+  border-radius: 5px;
+  background-color: rgba(245, 245, 245, 0.7) !important;
+  text-align: left;
+}
+.button-container {
+  width:25%; 
+  margin: auto;
+}
+@media only screen and (max-width: 768px){
+  .button-container {
+    width: 60%;
+  }
+}
+.btn-grad {
+  background-image: linear-gradient(to right, #a73737 0%, #7a2828  51%, #a73737  100%);
+  margin: 10px auto;
+  padding: 15px 45px;
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;
+  font-weight: bold;
+  box-sizing: border-box;            
+  box-shadow: 0 0 5px #eee;
+  border-radius: 10px;
+  display: block;
+}
+
+.btn-grad:hover {
+  background-position: right center; /* change the direction of the change here */
+  color: #fff;
+  text-decoration: none;
+}
+.well {
+  padding: 25px;
+  background-color: rgba(245, 245, 245, 0.7);
+  border-radius: 5px;
+}
+
+/* .well p {
+  font-size: 
+} */
+
+.btn-group-justified {
+  margin: 0 auto;
+}
+
+h1 {
+  text-align: center;
+  padding-bottom: 25px;
+}
+
+.container {
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+a{
+  color: #ccd500;
+  text-decoration: none;
+}
+
+a:hover{
+  text-decoration: underline;
+  color: #a9b119;
+}
+
+.slotMachine .slot{
+  height:100px;
+  background-position-x: 55%;
+  background-repeat: no-repeat;
+}
+
+.slot1 {
+  background-size: 50px;
+  background-image: url("/slot1.png");
+}
+
+.slot2 {
+  background-size: 50px;
+  background-image: url("/slot2.png");
+}
+
+.slot3 {
+  background-size: 50px;
+  background-image: url("/slot3.png");
+}
+
+.slot4 {
+  background-size: 50px;
+  background-image: url("/slot4.png");
+}
+
+.slot5 {
+  background-size: 50px;
+  background-image: url("/slot5.png");
+}
+
+.slot6 {
+  background-size: 50px;
+  background-image: url("/slot6.png");
+}
+
+/*
+ * Header
+ */
+.header-line {
+  width: 100%;
+  position: absolute;
+  height: 10px;
+  background-color: #A48E4E;
+  top: 0px;
+}
+
+header {
+  margin-top: 10px;
+  background-color: #DCD293;
+  border-bottom: 10px solid #66D4FF;
+  border-top: 20px dashed #A48E4E;
+  padding: 2em;
+  color:#333;
+  font-size: 25px;
+  text-align: center;
+}
+
+header a {
+  color: #6C5726;
+  font-weight: 700;
+}
+
+
+.badge {
+  color: white;
+  vertical-align: middle;
+  font-size: 30px;
+  background-color: rgb(0, 175, 225);
+}
+
+
+
+.machineResult {
+  color: #fff;
+  /* background-color:black; */
+  text-align: center;
+  font-weight: 900;
+  height: 50px !important;
+  background: transparent !important;
+  font-size: 18px;
+  padding: 10px !important;
+}
+
+
+#casino {
+  /* border-top: 20px dashed rgb(180, 75, 119);
+  border-bottom: 10px solid #A48E4E; */
+  /* background-color: rgb(240, 150, 150); */
+}
+
+#casino .content:nth-child(1) {
+  /* contains everything */
+  background-color: blue;
+  text-align: center;
+  /* if you increase the 80 px, the machine itself gets lower */
+  background: url('/machine.png') no-repeat 50% 80px;
+  background-size: 290px;
+  /* if you increase the 30px the machine moves to the right */
+  background-position-x: calc(50% + 30px);
+  /* the 10px does not have much effect */
+  /* min-height: 10px; */
+}
+
+#casino .content > div {
+  /* increasing the padding top moves the icons lower */
+  padding-top: 167px;
+  /* background-color: #333; */
+  /* contains the entire content*/
+  width: 240px;
+  margin: 0 auto;
+  /* changing the 30px moves the 3 slots to the right*/
+  transform: translateX(45px);
+}
+
+.machineContainer{
+  /* padding: 5px 1px 5px 1px; */
+  height: 135px;
+}
+
+.slotMachine{
+  width: 25%;
+  border: 5px solid #FFCC33;
+  height: 60px;
+  display: inline-block;
+  padding:0;
+}
+
+#casino .btn-group {
+  margin-top: 150px;
+  transform: translateX(-25px);
+}
+
+#casino .btn-group .btn {
+  border: none;
+  background-color: rgb(209, 79, 119);
+}
+
+#casino .btn-group .btn:hover, .btn-group .btn:focus {
+  background-color: rgb(180, 75, 119);
+}
+
+/*
+ * Footer
+ */
+footer{
+  width:100%;
+  background-color: #6C5726;
+  border-top: 20px dashed #A48E4E;
+  height: 180px;
+  padding-top: 40px;
+  text-align: center;
+  color: #DCD293;
+}
+
+#textMachine {
+  width:520px;
+  height: 67px;
+  overflow: hidden;
+  display: inline-block;
+  text-align: left;
+}
+
+/* .github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}} */
