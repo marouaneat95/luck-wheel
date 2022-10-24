@@ -97,35 +97,7 @@ a:hover{
   background-repeat: no-repeat;
 }
 
-.slot1 {
-  /* background-size: 60px; */
-  background-image: url("/slot1.png");
-}
 
-.slot2 {
-  /* background-size: 60px; */
-  background-image: url("/slot2.png");
-}
-
-.slot3 {
-  /* background-size: 60px; */
-  background-image: url("/slot3.png");
-}
-
-.slot4 {
-  /* background-size: 70px; */
-  background-image: url("/slot4.png");
-}
-
-.slot5 {
-  /* background-size: 70px; */
-  background-image: url("/slot5.png");
-}
-
-.slot6 {
-  /* background-size: 60px; */
-  background-image: url("/slot6.png");
-}
 
 /*
  * Header
@@ -179,12 +151,16 @@ header a {
 
 
 
+
+
+
+
+
 #casino {
   /* border-top: 20px dashed rgb(180, 75, 119);
-  border-bottom: 10px solid #A48E4E;
-  background-color: rgb(240, 150, 150); */
+  border-bottom: 10px solid #A48E4E; */
+  /* background-color: rgb(240, 150, 150); */
 }
-
 #casino .content:nth-child(1) {
   text-align: center;
   background: url('/machine.png') no-repeat 50% 80px;
@@ -192,18 +168,15 @@ header a {
   min-height: 580px;
 }
 
+
 #casino .content > div {
-    /* increasing the padding top moves the icons lower */
-    /* padding-top: 167px; */
-    /* background-color: #333; */
-    /* contains the entire content the sl*/
-    width: 240px;
-    margin: 0 auto;
-    /* changing the 30px moves the 3 slots to the right*/
-    /* transform: translateX(45px); */
+  /* increasing the padding top moves the icons lower */
   padding-top: 240px;
-  width: 300px;
+  /* background-color: #333; */
+  /* contains the entire content*/
+  width: 240px;
   margin: 0 auto;
+  /* changing the 30px moves the 3 slots to the right*/
   transform: translateX(30px);
 }
 
@@ -212,14 +185,45 @@ header a {
   height: 135px;
 }
 
-.slotMachine {
+.slotMachine{
   width: 36.333333%;
+  /* width: 25%; */
   border: 5px solid #FFCC33;
+  /* height: 60px; */
   height: 100px;
   display: inline-block;
+  padding:0;
 }
 
+.slot1 {
+  background-size: 80px;
+  background-image: url("/slot1.png");
+}
 
+.slot2 {
+  background-size: 80px;
+  background-image: url("/slot2.png");
+}
+
+.slot3 {
+  background-size: 80px;
+  background-image: url("/slot3.png");
+}
+
+.slot4 {
+  background-size: 80px;
+  background-image: url("/slot4.png");
+}
+
+.slot5 {
+  background-size: 80px;
+  background-image: url("/slot5.png");
+}
+
+.slot6 {
+  background-size: 80px;
+  background-image: url("/slot6.png");
+}
 #casino .btn-group {
   margin-top: 150px;
   transform: translateX(-25px);
