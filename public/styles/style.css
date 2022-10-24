@@ -31,11 +31,7 @@ code {
   width:25%; 
   margin: auto;
 }
-@media (max-device-width: 1024px){
-  .button-container {
-    width: 60%;
-  }
-}
+
 .btn-grad {
   background-image: linear-gradient(to right, #a73737 0%, #7a2828  51%, #a73737  100%);
   margin: 10px auto;
@@ -250,5 +246,9 @@ footer{
   display: inline-block;
   text-align: left;
 }
-
+@media (min-width: 1024px){
+  .button-container {
+    width: 55%;
+  }
+}
 /* .github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}} */
