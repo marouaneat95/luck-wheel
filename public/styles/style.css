@@ -98,32 +98,32 @@ a:hover{
 }
 
 .slot1 {
-  background-size: 50px;
+  /* background-size: 60px; */
   background-image: url("/slot1.png");
 }
 
 .slot2 {
-  background-size: 50px;
+  /* background-size: 60px; */
   background-image: url("/slot2.png");
 }
 
 .slot3 {
-  background-size: 50px;
+  /* background-size: 60px; */
   background-image: url("/slot3.png");
 }
 
 .slot4 {
-  background-size: 50px;
+  /* background-size: 70px; */
   background-image: url("/slot4.png");
 }
 
 .slot5 {
-  background-size: 50px;
+  /* background-size: 70px; */
   background-image: url("/slot5.png");
 }
 
 .slot6 {
-  background-size: 50px;
+  /* background-size: 60px; */
   background-image: url("/slot6.png");
 }
 
@@ -176,34 +176,35 @@ header a {
 }
 
 
+
+
+
 #casino {
   /* border-top: 20px dashed rgb(180, 75, 119);
-  border-bottom: 10px solid #A48E4E; */
-  /* background-color: rgb(240, 150, 150); */
+  border-bottom: 10px solid #A48E4E;
+  background-color: rgb(240, 150, 150); */
 }
 
 #casino .content:nth-child(1) {
-  /* contains everything */
-  background-color: blue;
   text-align: center;
-  /* if you increase the 80 px, the machine itself gets lower */
   background: url('/machine.png') no-repeat 50% 80px;
-  background-size: 290px;
-  /* if you increase the 30px the machine moves to the right */
   background-position-x: calc(50% + 30px);
-  /* the 10px does not have much effect */
-  /* min-height: 10px; */
+  min-height: 580px;
 }
 
 #casino .content > div {
-  /* increasing the padding top moves the icons lower */
-  padding-top: 167px;
-  /* background-color: #333; */
-  /* contains the entire content*/
-  width: 240px;
+    /* increasing the padding top moves the icons lower */
+    /* padding-top: 167px; */
+    /* background-color: #333; */
+    /* contains the entire content the sl*/
+    width: 240px;
+    margin: 0 auto;
+    /* changing the 30px moves the 3 slots to the right*/
+    /* transform: translateX(45px); */
+  padding-top: 240px;
+  width: 300px;
   margin: 0 auto;
-  /* changing the 30px moves the 3 slots to the right*/
-  transform: translateX(45px);
+  transform: translateX(30px);
 }
 
 .machineContainer{
@@ -211,13 +212,13 @@ header a {
   height: 135px;
 }
 
-.slotMachine{
-  width: 25%;
+.slotMachine {
+  width: 36.333333%;
   border: 5px solid #FFCC33;
-  height: 60px;
+  height: 100px;
   display: inline-block;
-  padding:0;
 }
+
 
 #casino .btn-group {
   margin-top: 150px;

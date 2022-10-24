@@ -19,14 +19,14 @@
       return newArray
     }
 
-    let firstArray = arr
-    let secondArray = arr
-    let thirdArray = arr
-    if(!shuffleArray){
-      firstArray = shuffle(arr)
-      secondArray = shuffle(arr)
-      thirdArray = shuffle(arr)
-    }
+    // let firstArray = arr
+    // let secondArray = arr
+    // let thirdArray = arr
+    // if(!shuffleArray){
+    let  firstArray = shuffle(arr)
+    let  secondArray = shuffle(arr)
+    let  thirdArray = shuffle(arr)
+    // }
     for (let a = 0 ; a < firstArray.length; a++){
       document.getElementById('casino1slotMachineContainer').innerHTML += `<div class="slot slot${firstArray[a]}"></div> `;
     }
