@@ -9,24 +9,11 @@ var path = require("path")
 app.set("view engine", "ejs");
 
 //route for index page
-app.get("/", function (req, res) {
-  const userId = req.query.id
-  res.render("home", {
-    userId
-  });
-});
-app.get("/bet", function (req, res) {
-  const userId = req.query.id
-  res.render("bet", {
-    userId
-  });
-});
+
 //route for magic page
-app.get("/magic", function (req, res) {
-  // const bet = req.params.balance
-  const bet = req.query.bet
+app.get("/", function (req, res) {
+  // const bet = req.query.bet
   const userId = req.query.id
-  // console.log("bet", bet)
   axios.get('https://www.khadmty1.com/api/WalletApi/GetGameCalc')
   .then((data)=>{
     console.log("data", data.data)
@@ -35,22 +22,17 @@ app.get("/magic", function (req, res) {
     let target = data.data.targetPercent;
     let x = parseInt(outcome)/parseInt(income);
     x = x * 100;
-    if(x <= target){
-      console.log("Won!")
-      axios.post('https://www.khadmty1.com/api/WalletApi/GameResult',{
+    axios.post('https://www.khadmty1.com/api/WalletApi/GameResult',{
         "ApplicationUserId":`${userId}`,
-        "Result": true,
-        "Balance": bet
+        "Result": x <= target,
+        // "Balance": bet
       })
       .then((data)=>{
         console.log("data", data.data)
         res.render("index", {
-          won: true
+          won: x <= target
         })
       })
-    } else {
-      console.log("Lost!")
-    }
   })
   .catch((err)=> console.error(err))
 

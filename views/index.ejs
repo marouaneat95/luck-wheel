@@ -1,7 +1,8 @@
 <%- include('./partials/header'); %>
-<h1 style="color: #E3B448; font-family: 'Pacifico', cursive; padding-top: 30px;">
-  welcome
-</h1>
+<div class="my-container" style="margin: 0;">
+  <h1 style="color: #E3B448; width:80%; font-family: 'Pacifico', cursive;">Welcome !</h1>
+  <div class="button-container"><a onclick="started" class="btn-grad"  style="cursor: pointer; color: white;">Start</a></div>
+</div>
 <div id="casino" style="padding-top:50px;">
     <div class="content">
       <div>
@@ -37,6 +38,11 @@
         </div>
       </div>
     </div>
+  </div>
+  <div class="my-container">
+    <div class="button-container"><a class="btn-grad" style="cursor: pointer; color: white;">100</a></div>
+    <div class="button-container"><a class="btn-grad"  style="cursor: pointer;  color: white;">200</a></div>
+    <div class="button-container"><a class="btn-grad"  style="cursor: pointer;  color: white;">300</a></div>
   </div>
   <div  id="wondiv" data-won=<%= won %>></div>
   <%- include('./partials/footer'); %>
