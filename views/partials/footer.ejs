@@ -1,46 +1,138 @@
-<!-- <footer> -->
-<!-- <div class="ui inverted footer">
-    <div class="ui container">
-   
-    </div>
-  </div> -->
-<!-- </footer> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.1.3/axios.min.js" integrity="sha512-0qU9M9jfqPw6FKkPafM3gy2CBAvUWnYVOfNPDYKVuRTel1PrciTj+a9P3loJB+j0QmN2Y0JYQmkBBS8W+mbezg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
-  const started = (e) => {
-    console.log("e", e)
+
+
+let arr = [1,2,3,4,5,6]
+      function shuffle(array) {
+          const newArray = [...array]
+          const length = newArray.length
+          for (let start = 0; start < length; start++) {
+            const randomPosition = Math.floor((newArray.length - start) * Math.random())
+            const randomItem = newArray.splice(randomPosition, 1)
+            newArray.push(...randomItem)
+          }
+          return newArray
+        }
+ let  firstArray = shuffle(arr)
+        let  secondArray = shuffle(arr)
+        let  thirdArray = shuffle(arr)
+        for (let a = 0 ; a < firstArray.length; a++){
+          document.getElementById('casino1slotMachineContainer').innerHTML += `<div class="slot slot${firstArray[a]}"></div> `;
+        }
+        for (let b = 0 ; b < secondArray.length; b++){
+          document.getElementById('casino2slotMachineContainer').innerHTML += `<div class="slot slot${secondArray[b]}"></div> `;
+        }
+        for (let c = 0 ; c < thirdArray.length; c++){
+          document.getElementById('casino3slotMachineContainer').innerHTML += `<div class="slot slot${thirdArray[c]}"></div> `;
+        }
+
+</script>
+<script>
+  let bet = 0;
+  const started = (e, userId) => {
+
+    mCasino1.shuffle(9999);
+    mCasino2.shuffle(9999);
+    mCasino3.shuffle(9999);
+    axios.get('https://www.khadmty1.com/api/WalletApi/GetGameCalc')
+    .then((data)=>{
+      let income = data.data.incomeBalance;
+      let outcome = data.data.outcomeBalance;
+      let target = data.data.targetPercent;
+      let x = parseInt(outcome)/parseInt(income);
+      x = x * 100;
+      let win = x <= target
+      console.log('win', win)
+      if(!win) {
+        let newArr = shuffle(arr)
+        let firstArray = newArr.map((el,ind) => {
+          if(el + 1 >= 6) return 1
+          return el + 1
+        })
+        let secondArray = firstArray.map((el,ind) => {
+          if(el + 1 >= 6) return 1
+          return el + 1
+        });
+        let thirdArray = secondArray.map((el,ind) => {
+          if(el + 1 >= 6) return 1
+          return el + 1
+        })
+        console.log(firstArray)
+        console.log(secondArray)
+        console.log(thirdArray)
+        for (let a = 0 ; a < firstArray.length; a++){
+          document.getElementById('casino1slotMachineContainer').innerHTML += `<div class="slot slot${firstArray[a]}"></div> `;
+        }
+        for (let b = 0 ; b < secondArray.length; b++){
+          document.getElementById('casino2slotMachineContainer').innerHTML += `<div class="slot slot${secondArray[b]}"></div> `;
+        }
+        for (let c = 0 ; c < thirdArray.length; c++){
+          document.getElementById('casino3slotMachineContainer').innerHTML += `<div class="slot slot${thirdArray[c]}"></div> `;
+        }
+      } else {
+        let randomNumber = Math.ceil(Math.random()*10)
+        if(randomNumber%3===0){
+          let firstArray = [1,2,3,4,5,6]
+          let secondArray = [1,2,3,4,5,6]
+          let thirdArray = [1,2,3,4,5,6]
+        for (let a = 0 ; a < firstArray.length; a++){
+          document.getElementById('casino1slotMachineContainer').innerHTML += `<div class="slot slot${firstArray[a]}"></div> `;
+        }
+        for (let b = 0 ; b < secondArray.length; b++){
+          document.getElementById('casino2slotMachineContainer').innerHTML += `<div class="slot slot${secondArray[b]}"></div> `;
+        }
+        for (let c = 0 ; c < thirdArray.length; c++){
+          document.getElementById('casino3slotMachineContainer').innerHTML += `<div class="slot slot${thirdArray[c]}"></div> `;
+        }
+        } else {
+          let newArr = shuffle(arr)
+          let firstArray = shuffle(arr)
+        let secondArray = shuffle(arr)
+        let thirdArray = shuffle(arr)
+        for (let a = 0 ; a < firstArray.length; a++){
+          document.getElementById('casino1slotMachineContainer').innerHTML += `<div class="slot slot${firstArray[a]}"></div> `;
+        }
+        for (let b = 0 ; b < secondArray.length; b++){
+          document.getElementById('casino2slotMachineContainer').innerHTML += `<div class="slot slot${secondArray[b]}"></div> `;
+        }
+        for (let c = 0 ; c < thirdArray.length; c++){
+          document.getElementById('casino3slotMachineContainer').innerHTML += `<div class="slot slot${thirdArray[c]}"></div> `;
+        }
+        }
+      }
+      axios.post('https://www.khadmty1.com/api/WalletApi/GameResult',{
+        "ApplicationUserId":`${userId}`,
+        "Result": x <= target,
+        "Balance": bet
+      })
+      .then((data)=>{
+        console.log("data", data.data)
+              setTimeout(()=>{
+        mCasino1.stop()
+      },1000)
+      setTimeout(()=>{
+        mCasino2.stop()
+      },2000)
+      setTimeout(()=>{
+        mCasino3.stop()
+      },3000)
+      })
+    })
+    .catch((err)=> console.error(err))
+  }
+  const setBet = (e,num) => {
+    bet = num
+    document.querySelectorAll('.bet-button').forEach(function(button) {
+    // Now do something with my button
+    button.style.color = 'white'
+});
+e.style.color = 'gold'
   }
 </script>
   <script>
-    var shuffleArray = document.getElementById('wondiv').dataset.won
-    const arr = [1,2,3,4,5,6]
-    function shuffle(array) {
-      const newArray = [...array]
-      const length = newArray.length
-      for (let start = 0; start < length; start++) {
-        const randomPosition = Math.floor((newArray.length - start) * Math.random())
-        const randomItem = newArray.splice(randomPosition, 1)
-        newArray.push(...randomItem)
-      }
-      return newArray
-    }
-
-    // let firstArray = arr
-    // let secondArray = arr
-    // let thirdArray = arr
-    // if(!shuffleArray){
-    let  firstArray = shuffle(arr)
-    let  secondArray = shuffle(arr)
-    let  thirdArray = shuffle(arr)
-    // }
-    for (let a = 0 ; a < firstArray.length; a++){
-      document.getElementById('casino1slotMachineContainer').innerHTML += `<div class="slot slot${firstArray[a]}"></div> `;
-    }
-    for (let b = 0 ; b < secondArray.length; b++){
-      document.getElementById('casino2slotMachineContainer').innerHTML += `<div class="slot slot${secondArray[b]}"></div> `;
-    }
-    for (let c = 0 ; c < thirdArray.length; c++){
-      document.getElementById('casino3slotMachineContainer').innerHTML += `<div class="slot slot${thirdArray[c]}"></div> `;
-    }
+    setInterval(()=>{
+      arr = shuffle(arr)
+    })
   </script>
   <script id="codeScript5">
       let count = 0;
@@ -63,52 +155,18 @@
       });
   </script>
   <script id="codeScript6">
-          mCasino1.shuffle(9999);
-      mCasino2.shuffle(9999);
-      mCasino3.shuffle(9999);
-      setTimeout(()=>{
-        mCasino1.stop()
-      },1000)
-      setTimeout(()=>{
-        mCasino2.stop()
-      },2000)
-      setTimeout(()=>{
-        mCasino3.stop()
-      },3000)
-    //       setInterval(()=> {
-    //   mCasino1.shuffle(9999);
-    //   mCasino2.shuffle(9999);
-    //   mCasino3.shuffle(9999);
-    //   setTimeout(()=>{
-    //     mCasino1.stop()
-    //   },1000)
-    //   setTimeout(()=>{
-    //     mCasino2.stop()
-    //   },2000)
-    //   setTimeout(()=>{
-    //     mCasino3.stop()
-    //   },3000)
-    // }, 7000)
-      // btnShuffle.addEventListener('click', () => {
-      //   count = 3;
-      //   mCasino1.shuffle(9999);
-      //   mCasino2.shuffle(9999);
-      //   mCasino3.shuffle(9999);
-      // });
-      // btnStop.addEventListener('click', () => {
-      //   switch(count) {
-      //     case 3:
-      //       mCasino1.stop();
-      //       break;
-      //     case 2:
-      //       mCasino2.stop();
-      //       break;
-      //     case 1:
-      //       mCasino3.stop();
-      //       break;
-      //   }
-      //   count--;
-      // });
+      //     mCasino1.shuffle(9999);
+      // mCasino2.shuffle(9999);
+      // mCasino3.shuffle(9999);
+      // setTimeout(()=>{
+      //   mCasino1.stop()
+      // },1000)
+      // setTimeout(()=>{
+      //   mCasino2.stop()
+      // },2000)
+      // setTimeout(()=>{
+      //   mCasino3.stop()
+      // },3000)
   </script>
 </body>
 </html>

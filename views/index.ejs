@@ -1,9 +1,9 @@
 <%- include('./partials/header'); %>
-<div class="my-container" style="margin: 0;">
-  <h1 style="color: #E3B448; width:80%; font-family: 'Pacifico', cursive;">Welcome !</h1>
-  <div class="button-container"><a onclick="started" class="btn-grad"  style="cursor: pointer; color: white;">Start</a></div>
+<div class="my-container" style="margin: 0; padding:0; min-height: 200px;">
+  <h1 style="color: #E3B448; width:100%; font-family: 'Pacifico', cursive;">Welcome !</h1>
+  
 </div>
-<div id="casino" style="padding-top:50px;">
+<div id="casino" style="padding-top:0;">
     <div class="content">
       <div>
         <div id="casino1" class="slotMachine" style="margin-left: -65px; overflow: hidden;">
@@ -39,10 +39,11 @@
       </div>
     </div>
   </div>
-  <div class="my-container">
-    <div class="button-container"><a class="btn-grad" style="cursor: pointer; color: white;">100</a></div>
-    <div class="button-container"><a class="btn-grad"  style="cursor: pointer;  color: white;">200</a></div>
-    <div class="button-container"><a class="btn-grad"  style="cursor: pointer;  color: white;">300</a></div>
+  <div class="my-container" style="min-height:200px;">
+    <div class="button-container" style="width:25%;"><a onclick="setBet(this,100)" class="btn-grad bet-button" style="cursor: pointer; color: white;">100</a></div>
+    <div class="button-container" style="width:25%;"><a onclick="setBet(this,200)" class="btn-grad bet-button"  style="cursor: pointer;  color: white;">200</a></div>
+    <div class="button-container" style="width:25%;"><a onclick="setBet(this,300)" class="btn-grad bet-button"  style="cursor: pointer;  color: white;">300</a></div>
+    <div class="button-container" style="width:30%;"><a onclick="started()" class="btn-grad bet-button"  style="cursor: pointer; color: white;">Start</a></div>
   </div>
   <div  id="wondiv" data-won=<%= won %>></div>
   <%- include('./partials/footer'); %>
