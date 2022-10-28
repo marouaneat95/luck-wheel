@@ -179,7 +179,7 @@ window.onclick = function(event) {
     modal.style.display = "none";
   }
 }
-  document.getElementById("modalContent").innerHTML = "Better Luck Next Time!"
+  document.getElementById("modalContent").innerHTML = !won ? "Better Luck Next Time!" : "Congratulations!"
   document.getElementById("startLink").innerText = "Try Again!"
   document.getElementById("startLink").onclick = function () {
     window.location.reload();
