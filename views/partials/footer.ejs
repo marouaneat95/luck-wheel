@@ -1,67 +1,58 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.1.3/axios.min.js" integrity="sha512-0qU9M9jfqPw6FKkPafM3gy2CBAvUWnYVOfNPDYKVuRTel1PrciTj+a9P3loJB+j0QmN2Y0JYQmkBBS8W+mbezg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
-
-
-let arr = [1,2,3,4,5,6]
-      function shuffle(array) {
-          const newArray = [...array]
-          const length = newArray.length
-          for (let start = 0; start < length; start++) {
-            const randomPosition = Math.floor((newArray.length - start) * Math.random())
-            const randomItem = newArray.splice(randomPosition, 1)
-            newArray.push(...randomItem)
-          }
-          return newArray
-        }
- let  firstArray = shuffle(arr)
-        let  secondArray = shuffle(arr)
-        let  thirdArray = shuffle(arr)
-        for (let a = 0 ; a < firstArray.length; a++){
-          document.getElementById('casino1slotMachineContainer').innerHTML += `<div class="slot slot${firstArray[a]}"></div> `;
-        }
-        for (let b = 0 ; b < secondArray.length; b++){
-          document.getElementById('casino2slotMachineContainer').innerHTML += `<div class="slot slot${secondArray[b]}"></div> `;
-        }
-        for (let c = 0 ; c < thirdArray.length; c++){
-          document.getElementById('casino3slotMachineContainer').innerHTML += `<div class="slot slot${thirdArray[c]}"></div> `;
-        }
-
-</script>
-<script>
+  const arrayEquals = (a, b) => {
+    return Array.isArray(a) &&
+        Array.isArray(b) &&
+        a.length === b.length &&
+        a.every((val, index) => val === b[index]);
+}
   let bet = 0;
-  const started = (e, userId) => {
-
-    mCasino1.shuffle(9999);
-    mCasino2.shuffle(9999);
-    mCasino3.shuffle(9999);
+  let win = false;
+  const setBet = (e,num) => {
+    bet = num
+    document.querySelectorAll('.bet-button').forEach(function(button) {
+    // Now do something with my button
+    button.style.color = 'white'
+    });
+    e.style.color = 'gold'
+  }
+  let arr = [1,2,3,4,5,6]
+  function shuffle(array) {
+    const newArray = [...array]
+    const length = newArray.length
+    for (let start = 0; start < length; start++) {
+      const randomPosition = Math.floor((newArray.length - start) * Math.random())
+      const randomItem = newArray.splice(randomPosition, 1)
+      newArray.push(...randomItem)
+    }
+    return newArray
+  }
+  let firstArray = shuffle(arr)
+  let secondArray = shuffle(arr)
+  let thirdArray = shuffle(arr)
+  
+  const initialize = () => {
     axios.get('https://www.khadmty1.com/api/WalletApi/GetGameCalc')
-    .then((data)=>{
+    .then((data) => {
       let income = data.data.incomeBalance;
       let outcome = data.data.outcomeBalance;
       let target = data.data.targetPercent;
       let x = parseInt(outcome)/parseInt(income);
       x = x * 100;
-      let win = x <= target
-      console.log('win', win)
-      if(!win) {
-        let newArr = shuffle(arr)
-        let firstArray = newArr.map((el,ind) => {
-          if(el + 1 >= 6) return 1
-          return el + 1
-        })
-        let secondArray = firstArray.map((el,ind) => {
-          if(el + 1 >= 6) return 1
-          return el + 1
-        });
-        let thirdArray = secondArray.map((el,ind) => {
-          if(el + 1 >= 6) return 1
-          return el + 1
-        })
-        console.log(firstArray)
-        console.log(secondArray)
-        console.log(thirdArray)
+      win = x <= target
+      if(win) {
+        let randomNumberOne = firstArray[0] >= 6 ? 5 : firstArray[0];
+        let randomNumberTwo = secondArray[0] >= 6 ? 5 : secondArray[0];
+        let randomNumberThree = thirdArray[0] >= 6 ? 5 : thirdArray[0];
+        document.getElementById('casino1').innerHTML = ` <div id="casino1slotMachineContainer" class="slotMachineContainer" style="transition: all 1s ease-out 0s; transform: matrix(1, 0, 0, 1, 0, ${ randomNumberOne * -1 * 100});">
+            </div>`
+            document.getElementById('casino2').innerHTML = ` <div id="casino2slotMachineContainer" class="slotMachineContainer" style="transition: all 1s ease-out 0s; transform: matrix(1, 0, 0, 1, 0, ${ randomNumberTwo * -1 * 100});">
+            </div>`
+            document.getElementById('casino3').innerHTML = ` <div id="casino3slotMachineContainer" class="slotMachineContainer" style="transition: all 1s ease-out 0s; transform: matrix(1, 0, 0, 1, 0, ${ randomNumberThird * -1 * 100});">
+            </div>`
         for (let a = 0 ; a < firstArray.length; a++){
           document.getElementById('casino1slotMachineContainer').innerHTML += `<div class="slot slot${firstArray[a]}"></div> `;
+          
         }
         for (let b = 0 ; b < secondArray.length; b++){
           document.getElementById('casino2slotMachineContainer').innerHTML += `<div class="slot slot${secondArray[b]}"></div> `;
@@ -70,73 +61,37 @@ let arr = [1,2,3,4,5,6]
           document.getElementById('casino3slotMachineContainer').innerHTML += `<div class="slot slot${thirdArray[c]}"></div> `;
         }
       } else {
-        let randomNumber = Math.ceil(Math.random()*10)
-        if(randomNumber%3===0){
-          let firstArray = [1,2,3,4,5,6]
-          let secondArray = [1,2,3,4,5,6]
-          let thirdArray = [1,2,3,4,5,6]
+        let randomNumberOne = firstArray[0] >= 6 ? 5 : firstArray[0];
+        let randomNumberTwo = secondArray[0] >= 6 ? 5 : secondArray[0];
+        let randomNumberThree = thirdArray[0] >= 6 ? 5 : thirdArray[0];
+        document.getElementById('casino1').innerHTML = ` <div id="casino1slotMachineContainer" class="slotMachineContainer" style="transition: all 1s ease-out 0s; transform: matrix(1, 0, 0, 1, 0, ${ randomNumberOne * -1 * 100});">
+            </div>`
+            document.getElementById('casino2').innerHTML = ` <div id="casino2slotMachineContainer" class="slotMachineContainer" style="transition: all 1s ease-out 0s; transform: matrix(1, 0, 0, 1, 0, ${ randomNumberTwo * -1 * 100});">
+            </div>`
+            document.getElementById('casino3').innerHTML = ` <div id="casino3slotMachineContainer" class="slotMachineContainer" style="transition: all 1s ease-out 0s; transform: matrix(1, 0, 0, 1, 0, ${ randomNumberThree * -1 * 100});">
+            </div>`
         for (let a = 0 ; a < firstArray.length; a++){
           document.getElementById('casino1slotMachineContainer').innerHTML += `<div class="slot slot${firstArray[a]}"></div> `;
+          
         }
         for (let b = 0 ; b < secondArray.length; b++){
           document.getElementById('casino2slotMachineContainer').innerHTML += `<div class="slot slot${secondArray[b]}"></div> `;
         }
         for (let c = 0 ; c < thirdArray.length; c++){
           document.getElementById('casino3slotMachineContainer').innerHTML += `<div class="slot slot${thirdArray[c]}"></div> `;
-        }
-        } else {
-          let newArr = shuffle(arr)
-          let firstArray = shuffle(arr)
-        let secondArray = shuffle(arr)
-        let thirdArray = shuffle(arr)
-        for (let a = 0 ; a < firstArray.length; a++){
-          document.getElementById('casino1slotMachineContainer').innerHTML += `<div class="slot slot${firstArray[a]}"></div> `;
-        }
-        for (let b = 0 ; b < secondArray.length; b++){
-          document.getElementById('casino2slotMachineContainer').innerHTML += `<div class="slot slot${secondArray[b]}"></div> `;
-        }
-        for (let c = 0 ; c < thirdArray.length; c++){
-          document.getElementById('casino3slotMachineContainer').innerHTML += `<div class="slot slot${thirdArray[c]}"></div> `;
-        }
         }
       }
-      axios.post('https://www.khadmty1.com/api/WalletApi/GameResult',{
-        "ApplicationUserId":`${userId}`,
-        "Result": x <= target,
-        "Balance": bet
-      })
-      .then((data)=>{
-        console.log("data", data.data)
-              setTimeout(()=>{
-        mCasino1.stop()
-      },1000)
-      setTimeout(()=>{
-        mCasino2.stop()
-      },2000)
-      setTimeout(()=>{
-        mCasino3.stop()
-      },3000)
-      })
+
     })
-    .catch((err)=> console.error(err))
-  }
-  const setBet = (e,num) => {
-    bet = num
-    document.querySelectorAll('.bet-button').forEach(function(button) {
-    // Now do something with my button
-    button.style.color = 'white'
-});
-e.style.color = 'gold'
-  }
-</script>
-  <script>
-    setInterval(()=>{
-      arr = shuffle(arr)
+    .catch(err => {
+      console.error(err)
     })
-  </script>
-  <script id="codeScript5">
-      let count = 0;
-      const btnShuffle = document.querySelector('#casinoShuffle');
+  }
+  initialize()
+  let won = false
+  let lostAndForAll = false
+  const started = (e, userId) => {
+    const btnShuffle = document.querySelector('#casinoShuffle');
       const btnStop = document.querySelector('#casinoStop');
       const casino1 = document.querySelector('#casino1');
       const casino2 = document.querySelector('#casino2');
@@ -153,20 +108,89 @@ e.style.color = 'gold'
         active: 2,
         delay: 500
       });
-  </script>
+    mCasino1.shuffle(3000);
+    mCasino2.shuffle(3000);
+    mCasino3.shuffle(3000);
+    let randomNumberTwo = 0
+    let randomNumberThree = 0
+    let randomNumberOne = firstArray[0] >= 6 ? 5 : firstArray[0];
+    setTimeout(()=>{
+      if(win) {
+        document.getElementById('casino1').innerHTML = ` <div id="casino1slotMachineContainer" class="slotMachineContainer" style="transition: all 1s ease-out 0s; transform: matrix(1, 0, 0, 1, 0, ${ randomNumberOne * -1 * 100});">
+            </div>`
+        for (let a = 0 ; a < firstArray.length; a++){
+          document.getElementById('casino1slotMachineContainer').innerHTML += `<div class="slot slot${firstArray[a]}"></div> `;
+        }
+      }
+        mCasino1.stop()
+      },2000)
+      setTimeout(()=>{
+        if(win) {
+          randomNumberTwo = secondArray[0] >= 6 ? 5 : secondArray[0];
+          
+          document.getElementById('casino2').innerHTML = ` <div id="casino2slotMachineContainer" class="slotMachineContainer" style="transition: all 1s ease-out 0s; transform: matrix(1, 0, 0, 1, 0, ${ randomNumberTwo * -1 * 100});">
+            </div>`
+      } else {
+        lostAndForAll = true
+        document.getElementById('casino2').innerHTML = ` <div id="casino2slotMachineContainer" class="slotMachineContainer" style="transition: all 1s ease-out 0s; transform: matrix(1, 0, 0, 1, 0, ${ randomNumberOne * -1 * 100});">
+            </div>`   
+        }
+      for (let b = 0 ; b < secondArray.length; b++){
+              document.getElementById('casino2slotMachineContainer').innerHTML += `<div class="slot slot${secondArray[b]}"></div> `;
+          }
+        mCasino2.stop()
+      },4000)
+      setTimeout(()=>{
+        if(win) {
+          let randomNumberThree = thirdArray[0] >= 6 ? 5 : thirdArray[0];
+          if(randomNumberTwo === randomNumberOne && arrayEquals(firstArray, secondArray)) {
+            if(randomNumberThree === randomNumberOne && arrayEquals(secondArray, thirdArray)) {
+              lostAndForAll = false
+              won = true
+            }
+          }
+          document.getElementById('casino3').innerHTML = ` <div id="casino3slotMachineContainer" class="slotMachineContainer" style="transition: all 1s ease-out 0s; transform: matrix(1, 0, 0, 1, 0, ${ randomNumberThree * -1 * 100});">
+            </div>`
+        }  else {
+          document.getElementById('casino3').innerHTML = ` <div id="casino3slotMachineContainer" class="slotMachineContainer" style="transition: all 1s ease-out 0s; transform: matrix(1, 0, 0, 1, 0, ${ randomNumberOne * -1 * 100});">
+            </div>`
+      }
+      for (let c = 0 ; c < thirdArray.length; c++){
+            document.getElementById('casino3slotMachineContainer').innerHTML += `<div class="slot slot${thirdArray[c]}"></div> `;
+          }
+        mCasino3.stop()
+        axios.post('https://www.khadmty1.com/api/WalletApi/GameResult',{
+          "ApplicationUserId":`${userId}`,
+          "Result": win,
+          "Balance": bet
+        })
+        .then((data)=>{
+          console.log("data", data.data)
+          var modal = document.getElementById("myModal");
+          var span = document.getElementsByClassName("close")[0];
+          modal.style.display = "block";
+          span.onclick = function() {
+  modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+        })
+        .catch((err)=> console.error(err))
+      },4000)
+    }
+</script>
   <script id="codeScript6">
-      //     mCasino1.shuffle(9999);
-      // mCasino2.shuffle(9999);
-      // mCasino3.shuffle(9999);
-      // setTimeout(()=>{
-      //   mCasino1.stop()
-      // },1000)
-      // setTimeout(()=>{
-      //   mCasino2.stop()
-      // },2000)
-      // setTimeout(()=>{
-      //   mCasino3.stop()
-      // },3000)
+    console.log(randomNumberOne)
+    console.log(randomNumberTwo)
+    console.log(randomNumberThree)
+    console.log(firstArray)
+    console.log(secondArray)
+    console.log(thirdArray)
   </script>
 </body>
 </html>
