@@ -179,18 +179,15 @@ window.onclick = function(event) {
     modal.style.display = "none";
   }
 }
+  document.getElementById("modalContent").innerHTML = "Better Luck Next Time!"
+  document.getElementById("startLink").innerText = "Try Again!"
+  document.getElementById("startLink").onclick = function () {
+    window.location.reload();
+  }
         })
         .catch((err)=> console.error(err))
       },4000)
     }
 </script>
-  <script id="codeScript6">
-    console.log(randomNumberOne)
-    console.log(randomNumberTwo)
-    console.log(randomNumberThree)
-    console.log(firstArray)
-    console.log(secondArray)
-    console.log(thirdArray)
-  </script>
 </body>
 </html>

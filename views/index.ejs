@@ -43,14 +43,14 @@
     <div class="button-container" style="width:25%;"><a onclick="setBet(this,100)" class="btn-grad bet-button" style="cursor: pointer; color: white;">100</a></div>
     <div class="button-container" style="width:25%;"><a onclick="setBet(this,200)" class="btn-grad bet-button"  style="cursor: pointer;  color: white;">200</a></div>
     <div class="button-container" style="width:25%;"><a onclick="setBet(this,300)" class="btn-grad bet-button"  style="cursor: pointer;  color: white;">300</a></div>
-    <div class="button-container" style="width:30%;"><a onclick="started()" class="btn-grad bet-button"  style="cursor: pointer; color: white;">Start</a></div>
+    <div class="button-container" style="width:30%;"><a id="startLink" onclick="started()" class="btn-grad bet-button"  style="cursor: pointer; color: white;">Start</a></div>
   </div>
   <div id="myModal" class="modal">
 
     <!-- Modal content -->
     <div class="modal-content">
       <span class="close">&times;</span>
-      <p>Some text in the Modal..</p>
+      <p id="modalContent">Some text in the Modal..</p>
     </div>
   
   </div>
