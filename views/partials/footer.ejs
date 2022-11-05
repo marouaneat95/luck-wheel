@@ -159,6 +159,18 @@
             document.getElementById('casino3slotMachineContainer').innerHTML += `<div class="slot slot${thirdArray[c]}"></div> `;
           }
         mCasino3.stop()
+        axios.post(`https://www.khadmty1.com/api/WalletApi/Deductbalance`,{
+          "ApplicationUserId":`${userId}`,
+          "Balance": bet
+        })
+        .then((data) => console.log("166", data))
+        .catch(err => console.error(err))
+        console.log('168', firstArray)
+        console.log('169', secondArray)
+        console.log('170', thirdArray)
+        console.log('171', randomNumberOne)
+        console.log('172', randomNumberTwo)
+        console.log('173', randomNumberThree)
         axios.post('https://www.khadmty1.com/api/WalletApi/GameResult',{
           "ApplicationUserId":`${userId}`,
           "Result": win,
@@ -172,8 +184,9 @@
           span.style.color="red"
           modal.style.display = "block";
           span.onclick = function() {
-  modal.style.display = "none";
-}
+            modal.style.display = "none";
+          }
+
 
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {
@@ -184,6 +197,9 @@ window.onclick = function(event) {
   document.getElementById("modalContent").innerHTML = !won ? "Better Luck Next Time!" : "Congratulations!"
   document.getElementById("startLink").innerText = "Try Again!"
   document.getElementById("startLink").onclick = function () {
+    window.location.reload();
+  }
+  document.getElementById("tryAgain").onclick = function () {
     window.location.reload();
   }
         })
