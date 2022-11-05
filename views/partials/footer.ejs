@@ -162,10 +162,11 @@
         axios.post('https://www.khadmty1.com/api/WalletApi/GameResult',{
           "ApplicationUserId":`${userId}`,
           "Result": win,
-          "Balance": bet
+          "Balance": bet,
+          "ItemId": 1
         })
         .then((data)=>{
-          console.log("data", data.data)
+          console.log("168 data", data.data)
           var modal = document.getElementById("myModal");
           var span = document.getElementsByClassName("close")[0];
           span.style.color="red"
