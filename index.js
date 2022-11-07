@@ -22,14 +22,16 @@ app.get("/", function (req, res) {
     let target = data.data.targetPercent;
     let x = parseInt(outcome)/parseInt(income);
     x = x * 100;
+    console.log('req.query', req.query)
     axios.post('https://www.khadmty1.com/api/WalletApi/GameResult',{
-        "ApplicationUserId":`${userId}`,
+        "ApplicationUserId":req.query.id,
         "Result": x <= target,
         // "Balance": bet
       })
       .then((data)=>{
         console.log("data", data.data)
         res.render("index", {
+          userId: req.query.id,
           won: x <= target
         })
       })

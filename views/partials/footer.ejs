@@ -1,5 +1,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.1.3/axios.min.js" integrity="sha512-0qU9M9jfqPw6FKkPafM3gy2CBAvUWnYVOfNPDYKVuRTel1PrciTj+a9P3loJB+j0QmN2Y0JYQmkBBS8W+mbezg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
+  let userId = '<%- userId %>'
+</script>
+<script>
   const arrayEquals = (a, b) => {
     return Array.isArray(a) &&
         Array.isArray(b) &&
@@ -48,7 +51,7 @@
             </div>`
             document.getElementById('casino2').innerHTML = ` <div id="casino2slotMachineContainer" class="slotMachineContainer" style="transition: all 1s ease-out 0s; transform: matrix(1, 0, 0, 1, 0, ${ randomNumberTwo * -1 * 100});">
             </div>`
-            document.getElementById('casino3').innerHTML = ` <div id="casino3slotMachineContainer" class="slotMachineContainer" style="transition: all 1s ease-out 0s; transform: matrix(1, 0, 0, 1, 0, ${ randomNumberThird * -1 * 100});">
+            document.getElementById('casino3').innerHTML = ` <div id="casino3slotMachineContainer" class="slotMachineContainer" style="transition: all 1s ease-out 0s; transform: matrix(1, 0, 0, 1, 0, ${ randomNumberThree * -1 * 100});">
             </div>`
         for (let a = 0 ; a < firstArray.length; a++){
           document.getElementById('casino1slotMachineContainer').innerHTML += `<div class="slot slot${firstArray[a]}"></div> `;
@@ -90,7 +93,43 @@
   initialize()
   let won = false
   let lostAndForAll = false
-  const started = (e, userId) => {
+  function getResults() {
+      let casino1 =  document.getElementById("casino1")
+      let casino1SlotResult = null;
+      for(let x = 0; x < 6; x++){
+        let element = casino1.children[0].children[x];
+        let boundaries = element.getBoundingClientRect();
+        if(boundaries.x - casino1.getBoundingClientRect().x < 10 && boundaries.x - casino1.getBoundingClientRect().x > 0 && boundaries.y - casino1.getBoundingClientRect().y < 10 && boundaries.y - casino1.getBoundingClientRect().y > 0){
+          casino1SlotResult = parseInt(element.classList[1][4])
+          break;
+        }
+      }
+      
+      let casino2 =  document.getElementById("casino2")
+      let casino2SlotResult = null;
+      for(let x = 0; x < 6; x++){
+        let boundaries = casino2.children[0].children[x].getBoundingClientRect();
+        if(boundaries.x - casino2.getBoundingClientRect().x < 10 && boundaries.x - casino2.getBoundingClientRect().x > 0 && boundaries.y - casino2.getBoundingClientRect().y < 10 && boundaries.y - casino2.getBoundingClientRect().y > 0){
+          casino2SlotResult = parseInt(casino2.children[0].children[x].classList[1][4])
+          break;
+        }
+      }
+      let casino3 =  document.getElementById("casino3")
+      let casino3SlotResult = null;
+      for(let x = 0; x < 6; x++){
+        let boundaries = casino3.children[0].children[x].getBoundingClientRect();
+        if(boundaries.x - casino3.getBoundingClientRect().x < 10 && boundaries.x - casino3.getBoundingClientRect().x > 0 && boundaries.y - casino3.getBoundingClientRect().y < 10 && boundaries.y - casino3.getBoundingClientRect().y > 0){
+          casino3SlotResult = parseInt(casino3.children[0].children[x].classList[1][4])
+          break;
+        }
+      }
+      if (casino1SlotResult === casino2SlotResult && casino2SlotResult === casino3SlotResult) {
+        return casino1SlotResult
+      } else {
+        false
+      }
+    }
+  const started = (e) => {
     const btnShuffle = document.querySelector('#casinoShuffle');
       const btnStop = document.querySelector('#casinoStop');
       const casino1 = document.querySelector('#casino1');
@@ -165,21 +204,21 @@
         })
         .then((data) => console.log("166", data))
         .catch(err => console.error(err))
-        console.log('168', firstArray)
-        console.log('169', secondArray)
-        console.log('170', thirdArray)
-        console.log('171', randomNumberOne)
-        console.log('172', randomNumberTwo)
-        console.log('173', randomNumberThree)
-        axios.post('https://www.khadmty1.com/api/WalletApi/GameResult',{
+        let gameEndResult = getResults();
+        console.log(gameEndResult)
+        if(win && gameEndResult) {
+          axios.post('https://www.khadmty1.com/api/WalletApi/GameResult',{
           "ApplicationUserId":`${userId}`,
           "Result": win,
           "Balance": bet,
-          "ItemId": 1
+          "ItemId": win && gameEndResult ? gameEndResult : null
         })
         .then((data)=>{
           console.log("168 data", data.data)
-          var modal = document.getElementById("myModal");
+        })
+        .catch((err)=> console.error(err))
+        }
+        var modal = document.getElementById("myModal");
           var span = document.getElementsByClassName("close")[0];
           span.style.color="red"
           modal.style.display = "block";
@@ -194,7 +233,7 @@ window.onclick = function(event) {
     modal.style.display = "none";
   }
 }
-  document.getElementById("modalContent").innerHTML = !won ? "Better Luck Next Time!" : "Congratulations!"
+  document.getElementById("modalContent").innerHTML = !won && !gameEndResult ? "Better Luck Next Time!" : "Congratulations!"
   document.getElementById("startLink").innerText = "Try Again!"
   document.getElementById("startLink").onclick = function () {
     window.location.reload();
@@ -202,10 +241,10 @@ window.onclick = function(event) {
   document.getElementById("tryAgain").onclick = function () {
     window.location.reload();
   }
-        })
-        .catch((err)=> console.error(err))
       },4000)
     }
+
+
 </script>
 </body>
 </html>
