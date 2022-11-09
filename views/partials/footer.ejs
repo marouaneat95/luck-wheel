@@ -152,8 +152,11 @@
     mCasino1.shuffle(3000);
     mCasino2.shuffle(3000);
     mCasino3.shuffle(3000);
-    let randomNumberTwo = 0
-    let randomNumberThree = 0
+    firstArray = shuffle(firstArray)
+    secondArray = shuffle(firstArray)
+    thirdArray = shuffle(firstArray)
+    let randomNumberTwo = secondArray[0] >= 6 ? 5 : secondArray[0];
+    let randomNumberThree = thirdArray[0] >= 6 ? 5 : thirdArray[0];
     let randomNumberOne = firstArray[0] >= 6 ? 5 : firstArray[0];
     setTimeout(()=>{
       if(win) {
