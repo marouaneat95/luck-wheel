@@ -97,7 +97,9 @@
       let casino1 =  document.getElementById("casino1")
       let casino1SlotResult = null;
       for(let x = 0; x < 6; x++){
+        console.log(x)
         let element = casino1.children[0].children[x];
+        console.log(element)
         let boundaries = element.getBoundingClientRect();
         if(boundaries.x - casino1.getBoundingClientRect().x < 10 && boundaries.x - casino1.getBoundingClientRect().x > 0 && boundaries.y - casino1.getBoundingClientRect().y < 10 && boundaries.y - casino1.getBoundingClientRect().y > 0){
           casino1SlotResult = parseInt(element.classList[1][4])
@@ -188,21 +190,19 @@
               won = true
             }
           }
-          document.getElementById('casino3').innerHTML = ` <div id="casino3slotMachineContainer" class="slotMachineContainer" style="transition: all 1s ease-out 0s; transform: matrix(1, 0, 0, 1, 0, ${ randomNumberThree * -1 * 100});">
-            </div>`
-        }  else {
-          document.getElementById('casino3').innerHTML = ` <div id="casino3slotMachineContainer" class="slotMachineContainer" style="transition: all 1s ease-out 0s; transform: matrix(1, 0, 0, 1, 0, ${ randomNumberOne * -1 * 100});">
-            </div>`
-      }
-      for (let c = 0 ; c < thirdArray.length; c++){
-            document.getElementById('casino3slotMachineContainer').innerHTML += `<div class="slot slot${thirdArray[c]}"></div> `;
-          }
+          document.getElementById('casino3').innerHTML = ` <div id="casino3slotMachineContainer" class="slotMachineContainer" style="transition: all 1s ease-out 0s; transform: matrix(1, 0, 0, 1, 0, ${ randomNumberThree * -1 * 100});"></div>`
+        } else {
+          document.getElementById('casino3').innerHTML = ` <div id="casino3slotMachineContainer" class="slotMachineContainer" style="transition: all 1s ease-out 0s; transform: matrix(1, 0, 0, 1, 0, ${ randomNumberOne * -1 * 100});"></div>`
+        }
+        for (let c = 0 ; c < thirdArray.length; c++){
+          document.getElementById('casino3slotMachineContainer').innerHTML += `<div class="slot slot${thirdArray[c]}"></div> `;
+        }
         mCasino3.stop()
         axios.post(`https://www.khadmty1.com/api/WalletApi/Deductbalance`,{
           "ApplicationUserId":`${userId}`,
           "Balance": bet
         })
-        .then((data) => console.log("166", data))
+        .then((data) => console.log(data))
         .catch(err => console.error(err))
         let gameEndResult = getResults();
         console.log(gameEndResult)
@@ -212,39 +212,32 @@
           "Result": win,
           "Balance": bet,
           "ItemId": win && gameEndResult ? gameEndResult : null
-        })
-        .then((data)=>{
-          console.log("168 data", data.data)
-        })
-        .catch((err)=> console.error(err))
+          })
+          .then((data)=>{ console.log("168 data", data.data) })
+          .catch((err)=> console.error(err))
         }
         var modal = document.getElementById("myModal");
-          var span = document.getElementsByClassName("close")[0];
-          span.style.color="red"
-          modal.style.display = "block";
-          span.onclick = function() {
-            modal.style.display = "none";
-          }
-
-
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
-  }
-}
-  document.getElementById("modalContent").innerHTML = !won && !gameEndResult ? "Better Luck Next Time!" : "Congratulations!"
-  document.getElementById("startLink").innerText = "Try Again!"
-  document.getElementById("startLink").onclick = function () {
-    window.location.reload();
-  }
-  document.getElementById("tryAgain").onclick = function () {
-    window.location.reload();
-  }
-      },4000)
+        console.log("220", modal)
+        var span = document.getElementsByClassName("close")[0];
+        span.style.color="red"
+        modal.style.display = "block";
+        span.onclick = function() {
+          modal.style.display = "none";
+        }
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+          if (event.target == modal) modal.style.display = "none";
+        }
+        document.getElementById("modalContent").innerHTML = !won && !gameEndResult ? "Better Luck Next Time!" : "Congratulations!"
+        document.getElementById("startLink").innerText = "Try Again!"
+        document.getElementById("startLink").onclick = function () {
+          window.location.reload();
+        }
+        document.getElementById("tryAgain").onclick = function () {
+          window.location.reload();
+        }
+      },6000)
     }
-
-
 </script>
 </body>
 </html>
